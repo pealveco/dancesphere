@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb  # Base de datos en memoria
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update  # Esto actualizará el esquema de la base de datos automáticamente
+    show-sql: true  # Muestra las consultas SQL generadas
+  h2:
+    console:
+      enabled: true  # Habilita la consola web de H2
+  logging:
+    level:
+      org.springframework: DEBUG
