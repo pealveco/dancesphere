@@ -1,9 +1,17 @@
 spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.r2dbc.R2dbcAutoConfiguration
   datasource:
-    url: jdbc:h2:mem:testdb  # Base de datos en memoria
-    driverClassName: org.h2.Driver
-    username: sa
-    password:
+    spring:
+      r2dbc:
+        url: r2dbc:postgresql://localhost:5432/dancesphere
+        username: root
+        password: 000000
+      sql:
+        init:
+          platform: postgres
+          mode: always
+
   jpa:
     hibernate:
       ddl-auto: update  # Esto actualizará el esquema de la base de datos automáticamente
