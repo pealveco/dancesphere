@@ -72,7 +72,7 @@ class DancerServiceTest {
         verify(dancerRepository, times(1)).findByEmail(any());
         verify(dancerRepository, times(1)).save(any(Dancer.class));
     }
-    
+
 
     @Test
     void updateDancer() {
