@@ -12,3 +12,6 @@ spring:
     hibernate:
       ddl-auto: update  # Para desarrollo: crea/actualiza tablas
     show-sql: true      # Muestra las consultas en logs
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect

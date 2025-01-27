@@ -6,9 +6,9 @@ import com.dancesphere.dancer.infrastructure.adapters.jpa.DancerEntity;
 import com.dancesphere.dancer.infrastructure.adapters.jpa.JPADancerRepository;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Component
 public class DancerRepositoryImpl implements DancerRepository {
@@ -37,7 +37,7 @@ public class DancerRepositoryImpl implements DancerRepository {
         return jpaDancerRepository.findAll()
                 .stream()
                 .map(this::mapToDomain)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -45,7 +45,11 @@ public class DancerRepositoryImpl implements DancerRepository {
         jpaDancerRepository.deleteById(id);
     }
 
-    // -------- Métodos de mapeo --------
+    @Override
+    public Optional<Dancer> findByEmail(String email) {
+        return jpaDancerRepository.findByEmail(email)
+                .map(this::mapToDomain);
+    }
 
     private DancerEntity mapToEntity(Dancer domain) {
         DancerEntity entity = new DancerEntity();
@@ -55,8 +59,9 @@ public class DancerRepositoryImpl implements DancerRepository {
         entity.setName(domain.getName());
         entity.setStyle(domain.getStyle());
         entity.setExperienceYears(domain.getExperienceYears());
-        entity.setCreatedAt(domain.getCreatedAt());
-        entity.setUpdatedAt(domain.getUpdatedAt());
+        entity.setEmail(domain.getEmail());
+        entity.setCreatedAt(domain.getCreatedAt() != null ? domain.getCreatedAt() : LocalDateTime.now());
+        entity.setUpdatedAt(domain.getUpdatedAt() != null ? domain.getUpdatedAt() : LocalDateTime.now());
         return entity;
     }
 
@@ -66,8 +71,9 @@ public class DancerRepositoryImpl implements DancerRepository {
         domain.setName(entity.getName());
         domain.setStyle(entity.getStyle());
         domain.setExperienceYears(entity.getExperienceYears());
-        domain.setCreatedAt(entity.getCreatedAt());
-        domain.setUpdatedAt(entity.getUpdatedAt());
+        domain.setEmail(entity.getEmail());
+        domain.setCreatedAt(entity.getCreatedAt() != null ? entity.getCreatedAt() : LocalDateTime.now());
+        domain.setUpdatedAt(entity.getUpdatedAt() != null ? entity.getUpdatedAt() : LocalDateTime.now());
         return domain;
     }
 }

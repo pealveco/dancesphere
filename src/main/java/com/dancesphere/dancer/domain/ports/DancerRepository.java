@@ -13,4 +13,6 @@ public interface DancerRepository {
     List<Dancer> findAll();
 
     void deleteById(Long id);
+
+    Optional<Dancer> findByEmail(String email);
 }

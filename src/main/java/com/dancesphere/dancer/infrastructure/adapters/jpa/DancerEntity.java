@@ -1,15 +1,15 @@
 package com.dancesphere.dancer.infrastructure.adapters.jpa;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "dancers")
+@Table(name = "dancers", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class DancerEntity {
 
     @Id
@@ -20,13 +20,9 @@ public class DancerEntity {
     private String style;
     private Short experienceYears;
 
+    @Column(nullable = false, unique = true)
+    private String email;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-
-    public DancerEntity() {
-        // TODO document why this constructor is empty
-    }
-
-    public void setExperienceYears(Short experienceYears) { this.experienceYears = experienceYears; }
-
 }
