@@ -1,7 +1,7 @@
 package com.dancesphere.application.service;
 
 import com.dancesphere.domain.model.Dancer;
-import com.dancesphere.infrastructure.persistence.repository.DancerRepository;
+import com.dancesphere.domain.repository.DancerRepository;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -27,11 +27,11 @@ public class DancerService {
         return dancerRepository.save(dancer);
     }
 
-    public Mono<Dancer> updateDancer(Long id, Dancer dancer) {
+    public Mono<Dancer> updateDancer(Long id, Dancer updatedDancer) {
         return dancerRepository.findById(id)
                 .flatMap(existingDancer -> {
-                    existingDancer.setName(dancer.getName());
-                    existingDancer.setStyle(dancer.getStyle());
+                    existingDancer.setName(updatedDancer.getName());
+                    existingDancer.setStyle(updatedDancer.getStyle());
                     return dancerRepository.save(existingDancer);
                 });
     }

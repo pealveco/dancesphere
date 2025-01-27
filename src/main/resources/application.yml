@@ -1,6 +1,7 @@
 spring:
   r2dbc:
-    url: r2dbc:postgresql://${spring.r2dbc.host}:${spring.r2dbc.port}/${spring.r2dbc.database}
+    #url: r2dbc:postgresql://${spring.r2dbc.host}:${spring.r2dbc.port}/${spring.r2dbc.database}
+    url: r2dbc:postgresql://localhost:5432/dancesphere
     host: localhost
     port: 5432
     database: dancesphere
@@ -10,6 +11,7 @@ spring:
     init:
       platform: postgres
       mode: always
+      #mode: never
 
 logging:
   level:
