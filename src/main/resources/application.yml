@@ -1,17 +1,12 @@
 spring:
-  r2dbc:
-    #url: r2dbc:postgresql://${spring.r2dbc.host}:${spring.r2dbc.port}/${spring.r2dbc.database}
-    url: r2dbc:postgresql://localhost:5432/dancesphere
-    host: localhost
-    port: 5432
-    database: dancesphere
-    username: root
-    password: 000000
-  sql:
-    init:
-      platform: postgres
-      mode: always
-      #mode: never
+  data:
+    mongodb:
+      uri: mongodb+srv://peter:FHrRQp9sJIOA0CTF@cluster0-prueba.kuwmb.mongodb.net/dancesphere
+      # Puedes agregar las opciones adicionales que necesites
+      # username: root
+      # password: rootpass
+      # host: localhost
+      # port: 27017
 
 logging:
   level:
