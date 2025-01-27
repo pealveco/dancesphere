@@ -1,18 +1,14 @@
-spring:
-  r2dbc:
-    #url: r2dbc:postgresql://${spring.r2dbc.host}:${spring.r2dbc.port}/${spring.r2dbc.database}
-    url: r2dbc:postgresql://localhost:5432/dancesphere
-    host: localhost
-    port: 5432
-    database: dancesphere
-    username: root
-    password: 000000
-  sql:
-    init:
-      platform: postgres
-      mode: always
-      #mode: never
+server:
+  port: 8080
 
-logging:
-  level:
-    org.springframework: DEBUG
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dancesphere_dancer
+    username: postgres
+    password: mypassword
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update  # Para desarrollo: crea/actualiza tablas
+    show-sql: true      # Muestra las consultas en logs
