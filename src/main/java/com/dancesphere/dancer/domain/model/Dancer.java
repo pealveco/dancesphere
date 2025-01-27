@@ -15,7 +15,7 @@ public class Dancer {
     private Long id;
     private String name;
     private String style;
-    private int experienceYears;
+    private Short experienceYears;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
