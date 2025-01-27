@@ -2,7 +2,6 @@ package com.dancesphere.application.controller;
 
 import com.dancesphere.application.service.DancerService;
 import com.dancesphere.domain.model.Dancer;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -28,7 +27,6 @@ public class DancerController {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
     public Mono<Dancer> createDancer(@RequestBody Dancer dancer) {
         return dancerService.createDancer(dancer);
     }
@@ -39,7 +37,6 @@ public class DancerController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public Mono<Void> deleteDancer(@PathVariable Long id) {
         return dancerService.deleteDancer(id);
     }

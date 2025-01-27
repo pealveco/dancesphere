@@ -1,24 +1,16 @@
 spring:
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.r2dbc.R2dbcAutoConfiguration
-  datasource:
-    spring:
-      r2dbc:
-        url: r2dbc:postgresql://localhost:5432/dancesphere
-        username: root
-        password: 000000
-      sql:
-        init:
-          platform: postgres
-          mode: always
+  r2dbc:
+    url: r2dbc:postgresql://${spring.r2dbc.host}:${spring.r2dbc.port}/${spring.r2dbc.database}
+    host: localhost
+    port: 5432
+    database: dancesphere
+    username: root
+    password: 000000
+  sql:
+    init:
+      platform: postgres
+      mode: always
 
-  jpa:
-    hibernate:
-      ddl-auto: update  # Esto actualizará el esquema de la base de datos automáticamente
-    show-sql: true  # Muestra las consultas SQL generadas
-  h2:
-    console:
-      enabled: true  # Habilita la consola web de H2
-  logging:
-    level:
-      org.springframework: DEBUG
+logging:
+  level:
+    org.springframework: DEBUG

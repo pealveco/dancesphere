@@ -31,7 +31,6 @@ public class DancerService {
         return dancerRepository.findById(id)
                 .flatMap(existingDancer -> {
                     existingDancer.setName(dancer.getName());
-                    existingDancer.setAge(dancer.getAge());
                     existingDancer.setStyle(dancer.getStyle());
                     return dancerRepository.save(existingDancer);
                 });
